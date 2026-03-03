@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Projects · mlusk.dev{% endblock %}
+
+{% block content %}
+<h1>Projects</h1>
+<p class="muted">A few things I’ve built or I’m actively building.</p>
+
+<div class="cards">
+  <article class="card">
+    <h3>Portfolio Site (this site)</h3>
+    <p>Flask + Gunicorn + Nginx on AWS Lightsail with HTTPS.</p>
+    <p class="muted">Python · Linux · Nginx · AWS</p>
+  </article>
+
+  <article class="card">
+    <h3>SQL Practice / Data Project</h3>
+    <p>Coming soon — queries, schema design, and a small reporting script.</p>
+    <p class="muted">SQL · Python</p>
+  </article>
+
+  <article class="card">
+    <h3>Automation Script</h3>
+    <p>Coming soon — a small tool that saves time in real life.</p>
+    <p class="muted">Python</p>
+  </article>
+</div>
+{% endblock %}
