@@ -7,6 +7,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-change-me")
 
+
 def send_contact_email(name: str, email: str, message: str) -> None:
     smtp_user = os.environ["SMTP_USER"]
     smtp_pass = os.environ["SMTP_PASS"]
@@ -18,9 +19,7 @@ def send_contact_email(name: str, email: str, message: str) -> None:
     msg["To"] = to_email
     msg["Reply-To"] = email
 
-    msg.set_content(
-        f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}\n"
-    )
+    msg.set_content(f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}\n")
 
     context = ssl.create_default_context()
     with smtplib.SMTP("smtp.gmail.com", 587, timeout=20) as server:
@@ -28,9 +27,21 @@ def send_contact_email(name: str, email: str, message: str) -> None:
         server.login(smtp_user, smtp_pass)
         server.send_message(msg)
 
+
+@app.get("/")
+def home():
+    return render_template("index.html")
+
+
+@app.get("/projects")
+def projects():
+    return render_template("projects.html")
+
+
 @app.get("/contact")
 def contact():
     return render_template("contact.html")
+
 
 @app.post("/contact")
 def contact_post():
@@ -47,6 +58,6 @@ def contact_post():
         flash("Message sent. I’ll get back to you soon.", "success")
     except Exception:
         app.logger.exception("Email send failed")
-        flash("Could not send email right now. Try again later.", "error")
+        flash("Could not send your message right now. Try again later.", "error")
 
     return redirect(url_for("contact"))
