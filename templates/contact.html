@@ -3,10 +3,26 @@
 
 {% block content %}
 <h1>Contact</h1>
-<p>
-  Email me: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>
-</p>
-<p class="muted">
-  (Later we can add a contact form, but this is reliable and professional.)
-</p>
+<p class="muted">Send me a message and I’ll reply as soon as possible.</p>
+
+<form method="post" action="/contact" class="form">
+
+<label>
+Name
+<input name="name" required>
+</label>
+
+<label>
+Email
+<input name="email" type="email" required>
+</label>
+
+<label>
+Message
+<textarea name="message" rows="6" required></textarea>
+</label>
+
+<button class="button" type="submit">Send Message</button>
+
+</form>
 {% endblock %}
