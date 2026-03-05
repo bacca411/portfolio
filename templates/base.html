@@ -13,12 +13,13 @@
       <nav class="nav">
         <a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a>
         <a href="/projects" class="{% if request.path.startswith('/projects') %}active{% endif %}">Projects</a>
+        <a href="/log" class="{% if request.path.startswith('/log') %}active{% endif %}">Training Log</a>
         <a href="/contact" class="{% if request.path.startswith('/contact') %}active{% endif %}">Contact</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main class="container">
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
