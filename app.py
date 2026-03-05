@@ -3,8 +3,10 @@ import smtplib
 import ssl
 from email.message import EmailMessage
 from flask import Flask, render_template, request, redirect, url_for, flash
+from db import init_db, get_conn
 
 app = Flask(__name__)
+init_db()
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev-change-me")
 
 
