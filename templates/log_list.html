@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Training Log · mlusk.dev{% endblock %}
+
+{% block content %}
+<h1>Training Log</h1>
+
+<p>
+  <a class="button" href="/log/new">New Entry</a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Minutes</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+      <tr>
+        <td>{{ r["date"] }}</td>
+        <td>{{ r["category"] }}</td>
+        <td>{{ r["minutes"] }}</td>
+        <td>{{ r["notes"] }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

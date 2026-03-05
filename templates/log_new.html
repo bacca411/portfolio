@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}New Training Log · mlusk.dev{% endblock %}
+
+{% block content %}
+<h1>New Training Log</h1>
+
+<form method="post" action="/log/new" class="form">
+  <label>
+    Date
+    <input type="date" name="date" required>
+  </label>
+
+  <label>
+    Category
+    <select name="category" required>
+      <option value="">Select…</option>
+      <option>Forms</option>
+      <option>Sparring</option>
+      <option>Conditioning</option>
+      <option>Basics</option>
+      <option>Technique</option>
+    </select>
+  </label>
+
+  <label>
+    Minutes
+    <input type="number" name="minutes" min="1" required>
+  </label>
+
+  <label>
+    Notes
+    <textarea name="notes" rows="6" required></textarea>
+  </label>
+
+  <button class="button" type="submit">Save</button>
+</form>
+
+<p><a href="/log">← Back to log</a></p>
+{% endblock %}
