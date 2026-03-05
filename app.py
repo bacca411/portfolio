@@ -89,6 +89,11 @@ def log_new_post():
     category = request.form.get("category")
     minutes = request.form.get("minutes")
     notes = request.form.get("notes")
+    password = request.form.get("password")
+
+    if password != os.environ.get("LOG_PASSWORD"):
+        flash("Invalid password.", "error")
+        return redirect("/log/new")
 
     if not date or not category or not minutes or not notes:
         flash("All fields are required.","error")
