@@ -157,3 +157,23 @@
 .button:hover {
     background: #333;
 }
+.flash-container {
+  margin-bottom: 20px;
+}
+
+.flash {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.flash.error {
+  background: #ffe5e5;
+  color: #a30000;
+}
+
+.flash.success {
+  background: #e6ffea;
+  color: #0c7a2c;
+}
