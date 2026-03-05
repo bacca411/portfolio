@@ -63,3 +63,46 @@ def contact_post():
         flash("Could not send your message right now. Try again later.", "error")
 
     return redirect(url_for("contact"))
+
+@app.get("/log")
+def log_list():
+    conn = get_conn()
+
+    rows = conn.execute(
+        "SELECT * FROM training_log ORDER BY date DESC LIMIT 100"
+    ).fetchall()
+
+    conn.close()
+
+    return render_template("log_list.html", rows=rows)
+
+
+@app.get("/log/new")
+def log_new():
+    return render_template("log_new.html")
+
+
+@app.post("/log/new")
+def log_new_post():
+
+    date = request.form.get("date")
+    category = request.form.get("category")
+    minutes = request.form.get("minutes")
+    notes = request.form.get("notes")
+
+    if not date or not category or not minutes or not notes:
+        flash("All fields are required.","error")
+        return redirect("/log/new")
+
+    conn = get_conn()
+
+    conn.execute(
+        "INSERT INTO training_log (date, category, minutes, notes) VALUES (?, ?, ?, ?)",
+        (date, category, minutes, notes),
+    )
+
+    conn.commit()
+    conn.close()
+
+    flash("Training entry saved.")
+    return redirect("/log")   
